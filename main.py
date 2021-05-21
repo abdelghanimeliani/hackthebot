@@ -62,21 +62,19 @@ def products_callback(update: Update, context: CallbackContext) :
             return int(s)
         except ValueError:
             return float(s)
-
     context.bot.send_invoice(
         chat_id = query.message.chat_id, 
         title = product['title'], 
         description = product['description'], 
-        payload = "sadfaa", 
+        payload = 'Payload', 
         provider_token = keys.paymentToken,
         currency = "USD",
         prices = [LabeledPrice(label = product['title'], amount = num(product['price']) * 100)],
         start_parameter = "test-payment",
         photo_url = product['image'],
         photo_height = 512,
-        photo_width = 512)
-        # need_shipping_address = True,
-        # need_email = True)
+        photo_width = 512,
+        need_shipping_address = True)
 
 def successful_payment_callback(update, context):
     update.message.reply_text("Thank you for your payment!")
