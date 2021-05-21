@@ -62,28 +62,18 @@ def build_menu(buttons,n_cols,header_buttons=None,footer_buttons=None):
 def category_callback(update: Update, context: CallbackContext):
     query = update.callback_query
 
-    if query.data == 'electronics':
-        productsUrl = "https://fakestoreapi.com/products/category/" + query.data
-        productsResponse = requests.get(productsUrl)
-        products = json.loads(productsResponse.text)
-        button_list = []
-        print(products)
-        for each in products:
-            print(each)
-            button_list.append(InlineKeyboardButton(each, callback_data = each.id))
-        reply_markup = InlineKeyboardMarkup(build_menu(button_list,n_cols=2))
+    productsUrl = "https://fakestoreapi.com/products/category/" + query.data
+    productsResponse = requests.get(productsUrl)
+    products = json.loads(productsResponse.text)
+    button_list = []
+    for each in products:
+        button_list.append(InlineKeyboardButton(each['title'], callback_data = each['id']))
+    reply_markup = InlineKeyboardMarkup(build_menu(button_list,n_cols=2))
 
-        context.bot.edit_message_reply_markup(
-         chat_id=query.message.chat_id,
-         message_id=query.message.message_id,
-         reply_markup=reply_markup)
-
-    elif query.data == 'Category 2':
-        print(query.data)
-    elif query.data == 'Category 3':
-        print(query.data)
-    elif query.data == 'Category 4':
-        print(query.data)
+    context.bot.edit_message_reply_markup(
+        chat_id=query.message.chat_id,
+        message_id=query.message.message_id,
+        reply_markup=reply_markup)
 
 def handle_message(update: Update, context: CallbackContext) -> None:
     text=str(update.message.text).lower()
