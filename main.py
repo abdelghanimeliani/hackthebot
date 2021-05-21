@@ -1,9 +1,10 @@
 import logging
 import json
 import requests
+from datetime import datetime
 
 from telegram import Update, ReplyKeyboardMarkup, KeyboardButton, LabeledPrice, InlineKeyboardButton, InlineKeyboardMarkup
-from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext, CallbackQueryHandler, ConversationHandler
+from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext, CallbackQueryHandler, ConversationHandler, PreCheckoutQueryHandler
 
 import const as keys
 import response as R
@@ -12,7 +13,7 @@ logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO
 )
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger(__name__)    
 
 def help_command(update: Update, context: CallbackContext) -> None:
     update.message.reply_text('/start 🛒 - start shopping\n /help ❓ - display commands help')
@@ -61,18 +62,32 @@ def products_callback(update: Update, context: CallbackContext) :
             return int(s)
         except ValueError:
             return float(s)
+
     context.bot.send_invoice(
         chat_id = query.message.chat_id, 
         title = product['title'], 
         description = product['description'], 
-        payload = "128", 
+        payload = "sadfaa", 
         provider_token = keys.paymentToken,
         currency = "USD",
         prices = [LabeledPrice(label = product['title'], amount = num(product['price']) * 100)],
-        start_parameter = None,
+        start_parameter = "test-payment",
         photo_url = product['image'],
-        photo_height=512,
-        photo_width=512)
+        photo_height = 512,
+        photo_width = 512)
+        # need_shipping_address = True,
+        # need_email = True)
+
+def successful_payment_callback(update, context):
+    update.message.reply_text("Thank you for your payment!")
+
+
+def precheckout_callback(update: Update, context: CallbackContext) -> None:
+    query = update.pre_checkout_query
+    if query.invoice_payload != 'Payload':
+        query.answer(ok=False, error_message="Something went wrong...")
+    else:
+        query.answer(ok=True)
 
 def handle_message(update: Update, context: CallbackContext) -> None:
     text=str(update.message.text).lower()
@@ -87,6 +102,8 @@ def main():
     dp.add_handler(CallbackQueryHandler(category_callback, pattern='^(c+)'))
     dp.add_handler(CallbackQueryHandler(products_callback, pattern='^(p+)'))
     dp.add_handler(MessageHandler(Filters.text,handle_message))
+    dp.add_handler(MessageHandler(Filters.successful_payment, successful_payment_callback))
+    dp.add_handler(PreCheckoutQueryHandler(callback=precheckout_callback))
     updater.start_polling()
     updater.is_idle
 
