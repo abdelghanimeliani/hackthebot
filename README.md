@@ -26,7 +26,7 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#project-structure">Project Structure</a></li>
+  
 
   </ol>
 </details>
@@ -93,17 +93,6 @@ Befor you begin you need to install python and configure A virtual environment i
 
 
 
-<!-- PROJECT STRUCTURE -->
-## Project-Structure
-The project is split into multiple categories `cogs` where each category will hold a set of commands here are the current structure :
-Karma has a lot of features, with **5 main categories**:
-
-
-*   👩‍💼 **General**: `serverinfo`, `ping`, `server` and **1** more! 
-*   🤖 **Mod**: `announce` 
-*   👻 **Fun**: `tweet`, `advice`
-*   ✉️ **Help**: `help`
-*   👑 **Owner**: `shutdown`, `say`, `embed`
 
 
 
