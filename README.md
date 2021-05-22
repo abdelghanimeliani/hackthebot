@@ -1,9 +1,5 @@
-# Stingo Bot
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
+# Stingo Telegram Bot
+
 
 <br />
 <p align="center">
@@ -35,6 +31,8 @@
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
   </ol>
+
+
 </details>
 
 
