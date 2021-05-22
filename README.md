@@ -31,12 +31,15 @@
   </ol>
 </details>
 
-### TESTs
-<p align="center">
-  ![App UI](images/screen.jpg)
+### Screens
 
-![Demo](images/vid.MP4)
-  </a>
+|show categoies|show products|the prodect|the price|
+|:------------:|:------------:|:-------------:|:-------------:|
+![show categoies](images/choosecat.jpg)|![show products](images/chooseproduct.jpg)|![the product](images/product.jpg)|![Country with Charts](images/price.jpg)|
+||payment|
+||![payment ](images/payement.jpg)|
+
+
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
