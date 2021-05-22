@@ -48,8 +48,8 @@ Stigno is a free, open source e-commerce telegram bot made by Python . Stingo of
 ### Built With
 
 * [Python](https://www.python.org/)
-* [telegram bot payments api](https://core.telegram.org/bots/payments)
 * [Python-telegram-bot](https://core.telegram.org/bots/)
+* [Telegram Payments + Stripe](https://core.telegram.org/bots)
 
 ## Getting Started
 
@@ -84,7 +84,7 @@ Befor you begin you need to install python and configure A virtual environment i
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-1. First you have to create a discord application and get an Application token check out the [documentation](https://discord.com/developers/docs/intro)
+1. First you have to create a Telegram bot and get an Application token check out the [documentation](https://core.telegram.org/bots)
 2. Set your application token in the configuration files  
 3. Running The bot
    ```sh
